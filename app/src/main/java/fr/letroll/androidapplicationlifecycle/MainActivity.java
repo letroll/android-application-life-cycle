@@ -48,12 +48,15 @@ public class MainActivity extends AppCompatActivity {
         tv = (TextView)findViewById(R.id.tv);
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
-                .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")  // My Galaxy Nexus test phone
-                .build();
+        AdRequest adRequest;
+        if(BuildConfig.DEBUG){
+            adRequest = new AdRequest.Builder()
+                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
+                    .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")  // My Galaxy Nexus test phone
+                    .build();
+        }else{
+            adRequest = new AdRequest.Builder().build();
+        }
 
         mAdView.loadAd(adRequest);
 
